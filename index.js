@@ -164,7 +164,17 @@ class Dropdown extends Component {
   }
 
   render () {
-    const { baseClassName, controlClassName, placeholderClassName, menuClassName, arrowClassName, arrowClosed, arrowOpen, className } = this.props
+    const {
+      baseClassName,
+      controlClassName,
+      placeholderClassName,
+      menuClassName,
+      menuClassClosedName,
+      arrowClassName,
+      arrowClosed,
+      arrowOpen,
+      className,
+    } = this.props
 
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : ''
     const placeHolderValue = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label
@@ -188,6 +198,10 @@ class Dropdown extends Component {
       [`${baseClassName}-menu`]: true,
       [menuClassName]: !!menuClassName
     })
+    const menuClassClosed = classNames({
+      [`${baseClassName}-menu-closed`]: true,
+      [menuClassClosedName]: !!menuClassClosedName
+    })
     const arrowClass = classNames({
       [`${baseClassName}-arrow`]: true,
       [arrowClassName]: !!arrowClassName
@@ -196,9 +210,17 @@ class Dropdown extends Component {
     const value = (<div className={placeholderClass}>
       {placeHolderValue}
     </div>)
-    const menu = this.state.isOpen ? <div className={menuClass} aria-expanded='true'>
-      {this.buildMenu()}
-    </div> : null
+    const menu = (
+      <div
+        className={`
+          ${menuClass}
+          ${this.state.isOpen ? menuClassClosed : ''}
+        `}
+        aria-expanded={this.state.isOpen}
+      >
+        {this.buildMenu()}
+      </div>
+    );
 
     return (
       <div className={dropdownClass}>

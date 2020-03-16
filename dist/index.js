@@ -233,13 +233,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _classNames, _classNames2, _classNames3, _classNames4, _classNames5;
+      var _classNames, _classNames2, _classNames3, _classNames4, _classNames5, _classNames6;
 
       var _this$props2 = this.props,
           baseClassName = _this$props2.baseClassName,
           controlClassName = _this$props2.controlClassName,
           placeholderClassName = _this$props2.placeholderClassName,
           menuClassName = _this$props2.menuClassName,
+          menuClassClosedName = _this$props2.menuClassClosedName,
           arrowClassName = _this$props2.arrowClassName,
           arrowClosed = _this$props2.arrowClosed,
           arrowOpen = _this$props2.arrowOpen,
@@ -250,16 +251,18 @@ function (_Component) {
       var controlClass = (0, _classnames["default"])((_classNames2 = {}, _defineProperty(_classNames2, "".concat(baseClassName, "-control"), true), _defineProperty(_classNames2, controlClassName, !!controlClassName), _defineProperty(_classNames2, disabledClass, !!disabledClass), _classNames2));
       var placeholderClass = (0, _classnames["default"])((_classNames3 = {}, _defineProperty(_classNames3, "".concat(baseClassName, "-placeholder"), true), _defineProperty(_classNames3, placeholderClassName, !!placeholderClassName), _defineProperty(_classNames3, 'is-selected', this.isValueSelected()), _classNames3));
       var menuClass = (0, _classnames["default"])((_classNames4 = {}, _defineProperty(_classNames4, "".concat(baseClassName, "-menu"), true), _defineProperty(_classNames4, menuClassName, !!menuClassName), _classNames4));
-      var arrowClass = (0, _classnames["default"])((_classNames5 = {}, _defineProperty(_classNames5, "".concat(baseClassName, "-arrow"), true), _defineProperty(_classNames5, arrowClassName, !!arrowClassName), _classNames5));
+      var menuClassClosed = (0, _classnames["default"])((_classNames5 = {}, _defineProperty(_classNames5, "".concat(baseClassName, "-menu-closed"), true), _defineProperty(_classNames5, menuClassClosedName, !!menuClassClosedName), _classNames5));
+      var arrowClass = (0, _classnames["default"])((_classNames6 = {}, _defineProperty(_classNames6, "".concat(baseClassName, "-arrow"), true), _defineProperty(_classNames6, arrowClassName, !!arrowClassName), _classNames6));
 
       var value = _react["default"].createElement("div", {
         className: placeholderClass
       }, placeHolderValue);
 
-      var menu = this.state.isOpen ? _react["default"].createElement("div", {
-        className: menuClass,
-        "aria-expanded": "true"
-      }, this.buildMenu()) : null;
+      var menu = _react["default"].createElement("div", {
+        className: "\n          ".concat(menuClass, "\n          ").concat(this.state.isOpen ? menuClassClosed : '', "\n        "),
+        "aria-expanded": this.state.isOpen
+      }, this.buildMenu());
+
       return _react["default"].createElement("div", {
         className: dropdownClass
       }, _react["default"].createElement("div", {
