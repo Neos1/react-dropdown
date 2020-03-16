@@ -170,6 +170,7 @@ class Dropdown extends Component {
       placeholderClassName,
       menuClassName,
       menuClassClosedName,
+      menuClassOpenedName,
       arrowClassName,
       arrowClosed,
       arrowOpen,
@@ -199,8 +200,12 @@ class Dropdown extends Component {
       [menuClassName]: !!menuClassName
     })
     const menuClassClosed = classNames({
-      [`${baseClassName}-menu-closed`]: true,
+      [`${baseClassName}-menu--closed`]: true,
       [menuClassClosedName]: !!menuClassClosedName
+    })
+    const menuClassOpened = classNames({
+      [`${baseClassName}-menu--opened`]: true,
+      [menuClassOpenedName]: !!menuClassOpenedName
     })
     const arrowClass = classNames({
       [`${baseClassName}-arrow`]: true,
@@ -214,7 +219,7 @@ class Dropdown extends Component {
       <div
         className={`
           ${menuClass}
-          ${this.state.isOpen ? menuClassClosed : ''}
+          ${this.state.isOpen ? menuClassOpened : menuClassClosed}
         `}
         aria-expanded={this.state.isOpen}
       >

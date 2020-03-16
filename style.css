@@ -40,6 +40,7 @@
 }
 
 .Dropdown-menu {
+  display: block;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
@@ -52,6 +53,14 @@
   width: 100%;
   z-index: 1000;
   -webkit-overflow-scrolling: touch;
+}
+
+.Dropdown-menu--opened {
+  display: block;
+}
+
+.Dropdown-menu--closed {
+  display: none;
 }
 
 .Dropdown-menu .Dropdown-group > .Dropdown-title{
